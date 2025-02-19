@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #fbfbfd;
+  color: black;
+}
+
+.App-container {
+  width: 50rem;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #e2e2e2;
+}

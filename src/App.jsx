@@ -4,8 +4,10 @@ import ReviewList from "./components/ReviewList";
 import { createReviews, deleteReview, getReviews, updateReview } from "./api";
 import ReviewForm from "./components/ReviewForm";
 import useAsync from "./components/hooks/useAsync";
-import { LocaleProvider } from "./contexts/LocaleContext";
+import { LocaleProvider } from "./components/contexts/LocaleContext";
 import LocaleSelect from "./components/LocaleSelect";
+import logo from "./assets/logo.png";
+import preview from "./assets/preview-placeholder.png";
 // import mockItems from "./mocks/mock.json";
 
 function App() {
@@ -69,29 +71,54 @@ function App() {
 
   return (
     <LocaleProvider defaultValue={"ko"}>
-      <div>
-        <LocaleSelect />
-
-        <div className="filter">
-          <button onClick={() => handleClick("createdAt")}>최신순</button>
-          <button onClick={() => handleClick("rating")}>평점순</button>
+      <div className="">
+        <div className="header">
+          <img src={logo} alt="logo image" />
+          <LocaleSelect />
         </div>
-        <ReviewForm
-          onSubmit={createReviews}
-          onSubmitSuccess={handleCreateSuccess}
-        />
-        <ReviewList
-          items={sortedItems}
-          onDelete={handleDelete}
-          onUpdate={updateReview}
-          onUpdateSuccess={handleUpdateSuccess}
-        />
-        {hasNext && (
-          <button disabled={isLoading} onClick={handleLoadMore}>
-            더 보기
-          </button>
-        )}
-        {loadingError?.message && <span>{loadingError.message}</span>}
+
+        <div className="App-container">
+          <ReviewForm
+            initialPreview={preview}
+            onSubmit={createReviews}
+            onSubmitSuccess={handleCreateSuccess}
+          />
+          <div className="filter">
+            <button
+              className={`byLatest button ${
+                sortOrder === "createdAt" ? "selected" : ""
+              }`}
+              onClick={() => handleClick("createdAt")}
+            >
+              최신순
+            </button>
+            <button
+              className={`byRating button ${
+                sortOrder === "rating" ? "selected" : ""
+              }`}
+              onClick={() => handleClick("rating")}
+            >
+              평점순
+            </button>
+          </div>
+          <div className="reviews-container">
+            <ReviewList
+              items={sortedItems}
+              onDelete={handleDelete}
+              onUpdate={updateReview}
+              onUpdateSuccess={handleUpdateSuccess}
+            />
+            {hasNext && (
+              <button disabled={isLoading} onClick={handleLoadMore}>
+                더 보기
+              </button>
+            )}
+            {loadingError?.message && <span>{loadingError.message}</span>}
+          </div>
+        </div>
+        <div className="App-footer">
+          <div></div>
+        </div>
       </div>
     </LocaleProvider>
   );

@@ -1,0 +1,21 @@
+.preview-container {
+  position: relative;
+}
+
+.preview-image {
+  cursor: pointer;
+}
+
+.remove-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2rem;
+  width: 2rem;
+  background-image: url("/src/assets/ic-reset.png");
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+}
