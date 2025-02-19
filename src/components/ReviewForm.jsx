@@ -83,15 +83,22 @@ function ReviewForm({
           placeholder="리뷰를 입력해주세요."
           onChange={handleInputChange}
         />
-        {onCancel && <button onClick={onCancel}>{t("cancel button")}</button>}
-        <button
-          className="confirm-button"
-          type="submit"
-          disabled={isSubmitting}
-          onClick={handleSubmit}
-        >
-          {t("confirm button")}
-        </button>
+        <div className="editBtn-container">
+          {onCancel && (
+            <button className="cancel-button" onClick={onCancel}>
+              {t("cancel button")}
+            </button>
+          )}
+          <button
+            className="confirm-button"
+            type="submit"
+            disabled={isSubmitting}
+            onClick={handleSubmit}
+          >
+            {t("confirm button")}
+          </button>
+        </div>
+
         {submittingError?.message && <div>{submittingError.message}</div>}
       </div>
     </form>

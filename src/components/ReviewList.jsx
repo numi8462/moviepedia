@@ -21,13 +21,19 @@ function ReviewListItem({ item, onDelete, onEdit }) {
   return (
     <div className="ReviewListItem">
       <img className="ReviewListItem-img" src={item.imgUrl} alt={item.title} />
-      <div>
-        <h1>{item.title}</h1>
+      <div className="reviewItem-container">
+        <h1 className="title">{item.title}</h1>
         <Rating value={item.rating} />
-        <p>개봉일: {formatDate(item.createdAt)}</p>
+        <p className="date">{formatDate(item.createdAt)}</p>
         <p>{item.content}</p>
-        <button onClick={handleEditClick}>{t("edit button")}</button>
-        <button onClick={handleDeleteClick}>{t("delete button")}</button>
+        <div className="button-container">
+          <button className="edit-button" onClick={handleEditClick}>
+            {t("edit button")}
+          </button>
+          <button className="delete-button" onClick={handleDeleteClick}>
+            {t("delete button")}
+          </button>
+        </div>
       </div>
     </div>
   );

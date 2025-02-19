@@ -8,6 +8,7 @@ import { LocaleProvider } from "./components/contexts/LocaleContext";
 import LocaleSelect from "./components/LocaleSelect";
 import logo from "./assets/logo.png";
 import preview from "./assets/preview-placeholder.png";
+import Button from "./components/Button";
 // import mockItems from "./mocks/mock.json";
 
 function App() {
@@ -16,7 +17,6 @@ function App() {
   const [offset, setOffset] = useState(0);
   const [hasNext, setHasNext] = useState(false);
   const [isLoading, loadingError, getReviewsAsync] = useAsync(getReviews);
-
   const sortedItems = items.sort((a, b) => b[sortOrder] - a[sortOrder]);
 
   const handleClick = (order) => {
@@ -83,24 +83,24 @@ function App() {
             onSubmit={createReviews}
             onSubmitSuccess={handleCreateSuccess}
           />
+
           <div className="filter">
-            <button
-              className={`byLatest button ${
+            <Button
+              className={`filter-button ${
                 sortOrder === "createdAt" ? "selected" : ""
               }`}
               onClick={() => handleClick("createdAt")}
-            >
-              최신순
-            </button>
-            <button
-              className={`byRating button ${
+              name={"latest button"}
+            />
+            <Button
+              className={`filter-button ${
                 sortOrder === "rating" ? "selected" : ""
               }`}
               onClick={() => handleClick("rating")}
-            >
-              평점순
-            </button>
+              name={"rating button"}
+            />
           </div>
+
           <div className="reviews-container">
             <ReviewList
               items={sortedItems}
@@ -109,7 +109,11 @@ function App() {
               onUpdateSuccess={handleUpdateSuccess}
             />
             {hasNext && (
-              <button disabled={isLoading} onClick={handleLoadMore}>
+              <button
+                className="more"
+                disabled={isLoading}
+                onClick={handleLoadMore}
+              >
                 더 보기
               </button>
             )}
@@ -117,7 +121,11 @@ function App() {
           </div>
         </div>
         <div className="App-footer">
-          <div></div>
+          <div className="text">
+            <span>서비스 이용약관 </span>
+            <span>|</span>
+            <span> 개인정보 처리방침</span>
+          </div>
         </div>
       </div>
     </LocaleProvider>

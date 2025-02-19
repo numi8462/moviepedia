@@ -48,6 +48,13 @@ textarea:focus {
   outline-offset: 1px;
 }
 
+.editBtn-container {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 1rem;
+}
+
 .confirm-button {
   padding: 0.5rem 1rem;
   width: 6rem;
@@ -55,5 +62,13 @@ textarea:focus {
   border-radius: 0 10px 0 10px;
   color: #fff;
   background-color: #000;
-  margin-left: auto;
+}
+
+.cancel-button {
+  padding: 0.5rem 1rem;
+  width: 6rem;
+  border: none;
+  border-radius: 0 10px 0 10px;
+  color: black;
+  background-color: #e2e2e2;
 }
